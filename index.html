@@ -1,0 +1,1218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gilliam Thompson Furniture — Shopify Proposal</title>
+  <style>
+    :root {
+      --navy: #0f1623;
+      --navy-2: #161e2e;
+      --navy-3: #1d2840;
+      --teal: #00c2a8;
+      --teal-dark: #00a38d;
+      --white: #ffffff;
+      --gray-100: #f4f6f8;
+      --gray-200: #e8ecf0;
+      --gray-400: #8a96a8;
+      --gray-600: #4a5568;
+      --border: #2a3650;
+      --border-light: #e2e8f0;
+      --red: #e53e3e;
+      --amber: #d69e2e;
+      --green: #2f855a;
+      --text-dark: #1a202c;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background: var(--white);
+      color: var(--text-dark);
+      line-height: 1.6;
+    }
+
+    /* ── GATE ── */
+    #gate {
+      position: fixed;
+      inset: 0;
+      background: var(--navy);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+
+    .gate-box {
+      background: var(--navy-2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 52px 48px;
+      text-align: center;
+      width: 100%;
+      max-width: 420px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .gate-logo {
+      width: 44px;
+      height: 44px;
+      background: var(--teal);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--navy);
+      letter-spacing: -1px;
+    }
+
+    .gate-box h2 { font-size: 1.4rem; font-weight: 700; color: var(--white); line-height: 1.3; }
+    .gate-box p { font-size: 0.9rem; color: var(--gray-400); }
+
+    .gate-box input {
+      width: 100%;
+      background: var(--navy-3);
+      border: 1px solid var(--border);
+      color: var(--white);
+      padding: 12px 16px;
+      font-size: 1rem;
+      border-radius: 8px;
+      outline: none;
+      font-family: inherit;
+      text-align: center;
+    }
+
+    .gate-box input:focus { border-color: var(--teal); }
+    .gate-box input::placeholder { color: var(--gray-400); }
+
+    .gate-box button {
+      width: 100%;
+      background: var(--teal);
+      color: var(--navy);
+      border: none;
+      padding: 13px 24px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      border-radius: 8px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: background 0.15s;
+    }
+
+    .gate-box button:hover { background: var(--teal-dark); }
+    .gate-error { color: #fc8181; font-size: 0.85rem; min-height: 18px; }
+
+    #content { display: none; }
+
+    /* ── ALERT ── */
+    .alert-bar {
+      background: #fff5f5;
+      border-bottom: 1px solid #fed7d7;
+      padding: 10px 48px;
+      font-size: 0.85rem;
+      color: #c53030;
+    }
+
+    /* ── NAV ── */
+    nav {
+      background: var(--navy);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 48px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--white);
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    .nav-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--teal);
+      border-radius: 50%;
+    }
+
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a {
+      color: var(--gray-400);
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: color 0.15s;
+    }
+    .nav-links a:hover { color: var(--white); }
+
+    .nav-cta {
+      background: var(--teal);
+      color: var(--navy) !important;
+      font-weight: 700 !important;
+      padding: 7px 18px;
+      border-radius: 6px;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--navy);
+      padding: 80px 48px 90px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -30%;
+      right: -10%;
+      width: 60%;
+      height: 160%;
+      background: radial-gradient(circle, rgba(0,194,168,0.06) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .hero-inner { max-width: 1100px; margin: 0 auto; position: relative; }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(0,194,168,0.12);
+      border: 1px solid rgba(0,194,168,0.3);
+      color: var(--teal);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 100px;
+      margin-bottom: 28px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1.15;
+      max-width: 780px;
+      margin-bottom: 20px;
+      letter-spacing: -0.02em;
+    }
+
+    .hero h1 span { color: var(--teal); }
+
+    .hero-sub {
+      font-size: 1.1rem;
+      color: var(--gray-400);
+      max-width: 640px;
+      margin-bottom: 40px;
+      line-height: 1.7;
+    }
+
+    .hero-actions { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+
+    .btn-primary {
+      background: var(--teal);
+      color: var(--navy);
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 13px 28px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background 0.15s;
+      display: inline-block;
+    }
+
+    .btn-primary:hover { background: var(--teal-dark); }
+
+    .btn-ghost {
+      color: var(--gray-400);
+      font-size: 0.9rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-ghost:hover { color: var(--white); }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      margin-top: 60px;
+      max-width: 800px;
+    }
+
+    .hero-stat { background: var(--navy-2); padding: 24px 28px; }
+    .hero-stat .num {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--teal);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .hero-stat .label {
+      font-size: 0.8rem;
+      color: var(--gray-400);
+      line-height: 1.4;
+    }
+
+    /* ── SECTIONS ── */
+    .section { padding: 80px 48px; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .section-alt { background: var(--gray-100); }
+    .section-dark { background: var(--navy); color: var(--white); }
+
+    .section-num {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--teal);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    h2 {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+      line-height: 1.25;
+    }
+
+    .section-dark h2 { color: var(--white); }
+
+    .section-lead {
+      font-size: 1rem;
+      color: var(--gray-600);
+      max-width: 660px;
+      margin-bottom: 48px;
+      line-height: 1.7;
+    }
+
+    .section-dark .section-lead { color: var(--gray-400); }
+
+    /* ── COMPARE ── */
+    .compare-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .compare-card {
+      background: var(--white);
+      border: 1px solid var(--border-light);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .compare-card.current .card-head { background: #fff5f5; border-bottom: 1px solid #fed7d7; }
+    .compare-card.shopify .card-head { background: #f0fdf9; border-bottom: 1px solid #b2f5ea; }
+
+    .card-head {
+      padding: 18px 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .card-head .badge {
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 100px;
+    }
+
+    .compare-card.current .badge { background: #fed7d7; color: #c53030; }
+    .compare-card.shopify .badge { background: #b2f5ea; color: #00695c; }
+
+    .card-head h3 { font-size: 1rem; font-weight: 700; }
+
+    .card-body { padding: 8px 0; }
+
+    .card-body li {
+      list-style: none;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 13px 24px;
+      font-size: 0.9rem;
+      border-bottom: 1px solid var(--gray-200);
+      line-height: 1.5;
+      color: var(--gray-600);
+    }
+
+    .card-body li:last-child { border-bottom: none; }
+    .card-body li .icon { flex-shrink: 0; margin-top: 2px; font-size: 0.85rem; }
+    .compare-card.shopify li { color: var(--text-dark); }
+
+    /* ── PHASE CARDS ── */
+    .phase-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 40px;
+    }
+
+    .phase-card {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 36px 32px;
+      position: relative;
+      border: 2px solid var(--border-light);
+    }
+
+    .phase-card.priority {
+      border-color: var(--teal);
+      box-shadow: 0 0 0 4px rgba(0,194,168,0.08);
+    }
+
+    .phase-card .phase-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--gray-100);
+      color: var(--gray-600);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 100px;
+      margin-bottom: 16px;
+    }
+
+    .phase-card.priority .phase-tag {
+      background: var(--teal);
+      color: var(--navy);
+    }
+
+    .phase-card h3 {
+      font-size: 1.3rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    .phase-card .timing {
+      color: var(--teal);
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .phase-card p {
+      font-size: 0.92rem;
+      color: var(--gray-600);
+      margin-bottom: 16px;
+      line-height: 1.65;
+    }
+
+    .phase-card ul {
+      list-style: none;
+      padding-top: 8px;
+      border-top: 1px solid var(--border-light);
+    }
+
+    .phase-card ul li {
+      padding: 8px 0;
+      font-size: 0.88rem;
+      color: var(--text-dark);
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .phase-card ul li::before {
+      content: '✓';
+      color: var(--teal);
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+
+    /* ── WORKFLOW ── */
+    .workflow-list { display: flex; flex-direction: column; gap: 12px; }
+
+    .workflow-step {
+      background: var(--white);
+      border: 1px solid var(--border-light);
+      border-radius: 10px;
+      padding: 24px 28px;
+      display: grid;
+      grid-template-columns: 44px 1fr;
+      gap: 20px;
+      align-items: start;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+
+    .workflow-step:hover {
+      border-color: var(--teal);
+      box-shadow: 0 0 0 3px rgba(0,194,168,0.08);
+    }
+
+    .step-badge {
+      width: 44px;
+      height: 44px;
+      background: var(--navy);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 800;
+      color: var(--teal);
+      flex-shrink: 0;
+    }
+
+    .workflow-step h4 { font-size: 1rem; font-weight: 700; margin-bottom: 5px; }
+    .workflow-step p { font-size: 0.9rem; color: var(--gray-600); margin-bottom: 10px; line-height: 1.6; }
+
+    .tool-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #f0fdf9;
+      border: 1px solid #b2f5ea;
+      color: #00695c;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 100px;
+    }
+
+    /* ── FEATURES ── */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .feature-card {
+      background: var(--white);
+      border: 1px solid var(--border-light);
+      border-radius: 10px;
+      padding: 26px 28px;
+    }
+
+    .feature-card .feature-tag {
+      display: inline-block;
+      background: var(--navy);
+      color: var(--teal);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 100px;
+      margin-bottom: 14px;
+    }
+
+    .feature-card h4 { font-size: 1.05rem; font-weight: 700; margin-bottom: 10px; }
+    .feature-card p {
+      font-size: 0.9rem;
+      color: var(--gray-600);
+      line-height: 1.6;
+      margin-bottom: 12px;
+    }
+
+    .feature-card .app-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #f0fdf9;
+      border: 1px solid #b2f5ea;
+      color: #00695c;
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 100px;
+      margin-right: 6px;
+    }
+
+    /* ── INTEGRATIONS ── */
+    .integration-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-top: 32px;
+    }
+
+    .integration-card {
+      background: var(--white);
+      border: 1px solid var(--border-light);
+      border-radius: 10px;
+      padding: 18px 20px;
+      text-align: center;
+    }
+
+    .integration-card .check {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      background: var(--teal);
+      color: var(--navy);
+      border-radius: 50%;
+      font-size: 0.85rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    .integration-card h5 { font-size: 0.95rem; font-weight: 700; margin-bottom: 4px; }
+    .integration-card p { font-size: 0.78rem; color: var(--gray-600); line-height: 1.4; }
+
+    /* ── PRICING ── */
+    .savings-callout {
+      background: linear-gradient(135deg, #00c2a8 0%, #00a38d 100%);
+      border-radius: 12px;
+      padding: 40px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-bottom: 32px;
+    }
+
+    .savings-callout h3 { color: var(--navy); font-size: 1.25rem; font-weight: 800; }
+    .savings-callout p { color: rgba(15,22,35,0.75); font-size: 0.92rem; margin-top: 6px; max-width: 520px; line-height: 1.6; }
+    .savings-callout .big-num { color: var(--navy); font-size: 3rem; font-weight: 900; letter-spacing: -0.02em; line-height: 1; }
+    .savings-callout .sub-num { color: rgba(15,22,35,0.7); font-size: 0.85rem; margin-top: 6px; text-align: right; }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .pricing-card {
+      background: var(--white);
+      border: 1px solid var(--border-light);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .pricing-head {
+      background: var(--navy);
+      padding: 18px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .pricing-head h3 { color: var(--white); font-size: 0.9rem; font-weight: 700; }
+    .pricing-head .amount { color: var(--teal); font-size: 1rem; font-weight: 800; }
+
+    .pricing-items { padding: 8px 0; }
+
+    .pricing-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 12px 24px;
+      border-bottom: 1px solid var(--gray-200);
+      gap: 16px;
+    }
+
+    .pricing-item:last-child { border-bottom: none; }
+    .pricing-item-label { font-size: 0.88rem; color: var(--text-dark); }
+    .pricing-item-sub { font-size: 0.78rem; color: var(--gray-400); margin-top: 2px; }
+    .pricing-item-price { font-size: 0.88rem; font-weight: 700; color: var(--gray-600); white-space: nowrap; flex-shrink: 0; }
+
+    .incentive-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .incentive-card {
+      background: var(--white);
+      border: 1px solid var(--border-light);
+      border-radius: 10px;
+      padding: 18px 20px;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .incentive-card .icon {
+      background: var(--teal);
+      color: var(--navy);
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.95rem;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+
+    .incentive-card h5 { font-size: 0.9rem; font-weight: 700; margin-bottom: 3px; }
+    .incentive-card p { font-size: 0.78rem; color: var(--gray-600); line-height: 1.4; }
+
+    /* ── GENERATIONAL CALLOUT ── */
+    .gen-callout {
+      background: var(--navy-2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 36px 40px;
+      margin-top: 48px;
+    }
+
+    .gen-callout h3 {
+      color: var(--white);
+      font-size: 1.2rem;
+      margin-bottom: 14px;
+      font-weight: 700;
+    }
+
+    .gen-callout p {
+      color: var(--gray-400);
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    .gen-callout p strong { color: var(--teal); font-weight: 600; }
+
+    /* ── CTA ── */
+    .cta-section {
+      background: var(--teal);
+      padding: 72px 48px;
+      text-align: center;
+    }
+
+    .cta-section h2 { color: var(--navy); font-size: 2rem; margin-bottom: 12px; }
+    .cta-section h2 em { font-style: italic; }
+    .cta-section p { color: rgba(15,22,35,0.7); margin-bottom: 36px; font-size: 1rem; max-width: 600px; margin-left: auto; margin-right: auto; }
+
+    .btn-dark {
+      background: var(--navy);
+      color: var(--white);
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 14px 32px;
+      border-radius: 8px;
+      text-decoration: none;
+      display: inline-block;
+      transition: opacity 0.15s;
+    }
+
+    .btn-dark:hover { opacity: 0.85; }
+
+    footer {
+      background: var(--navy);
+      border-top: 1px solid var(--border);
+      padding: 28px 48px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      color: var(--gray-400);
+    }
+
+    @media (max-width: 760px) {
+      .nav-links { display: none; }
+      .section, .hero, .cta-section { padding-left: 24px; padding-right: 24px; }
+      .nav-inner { padding: 0 24px; }
+      .compare-grid, .pricing-grid, .feature-grid, .incentive-grid, .phase-grid { grid-template-columns: 1fr; }
+      .integration-grid { grid-template-columns: repeat(2, 1fr); }
+      .hero-stats { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 8px; }
+      .savings-callout { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── GATE ── -->
+<div id="gate">
+  <div class="gate-box">
+    <div class="gate-logo">GT</div>
+    <h2>Gilliam Thompson Furniture<br/>Shopify Proposal</h2>
+    <p>This proposal is confidential.<br/>Enter your access code to continue.</p>
+    <input type="password" id="pw-input" placeholder="Access code" onkeydown="if(event.key==='Enter')checkPw()" />
+    <button onclick="checkPw()">View Proposal →</button>
+    <div class="gate-error" id="pw-error"></div>
+  </div>
+</div>
+
+<!-- ── CONTENT ── -->
+<div id="content">
+
+  <div class="alert-bar">
+    <strong>⚠ Confidential.</strong>&nbsp; Prepared exclusively for Jordan, Denise &amp; Sam at Gilliam Thompson Furniture. Please do not distribute.
+  </div>
+
+  <nav>
+    <div class="nav-inner">
+      <div class="nav-brand">
+        <div class="nav-dot"></div>
+        Gilliam Thompson × Shopify
+      </div>
+      <ul class="nav-links">
+        <li><a href="#opportunity">Opportunity</a></li>
+        <li><a href="#approach">Approach</a></li>
+        <li><a href="#workflow">Workflow</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#next-steps" class="nav-cta">Book a Call →</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-inner">
+      <div class="eyebrow">✦ Prepared by Shopify Sales · For Jordan, Denise &amp; Sam</div>
+      <h1>66 years of doing it right.<br/>Time to do it on tools<br/>built for the <span>next 66.</span></h1>
+      <p class="hero-sub">You don't need to throw out what works. You need a system that respects the way Gilliam Thompson actually runs — handwritten tickets, family pricing, sales floor relationships — and removes the friction underneath it. Here's how.</p>
+      <div class="hero-actions">
+        <a href="#opportunity" class="btn-primary">See the opportunity →</a>
+        <a href="#pricing" class="btn-ghost">Skip to pricing ↓</a>
+      </div>
+
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="num">$1,200 → $67</div>
+          <div class="label">Profit Systems monthly cost vs. Shopify POS Pro with incentive applied</div>
+        </div>
+        <div class="hero-stat">
+          <div class="num">~$13.5k</div>
+          <div class="label">Estimated annual savings on POS subscription alone, before website value</div>
+        </div>
+        <div class="hero-stat">
+          <div class="num">POS → Web</div>
+          <div class="label">Phased build: fix the floor first, then launch the storefront</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- OPPORTUNITY -->
+  <div class="section" id="opportunity">
+    <div class="section-inner">
+      <div class="section-num">01 — Opportunity</div>
+      <h2>The gaps you already see,<br/>side by side</h2>
+      <p class="section-lead">You named most of these on our call — Profit Systems isn't being updated, tickets are handwritten, salespeople don't always know what's in stock, and the website shows 300 pages of dressers nobody's actually selling. Here's exactly what changes.</p>
+
+      <div class="compare-grid">
+        <div class="compare-card current">
+          <div class="card-head">
+            <span class="badge">Today</span>
+            <h3>Profit Systems + manual workflows</h3>
+          </div>
+          <ul class="card-body">
+            <li><span class="icon">✗</span> $1,200/month for a POS that isn't being actively updated or improved</li>
+            <li><span class="icon">✗</span> Sales tickets handwritten, then re-entered into the POS by Sam — duplicate work</li>
+            <li><span class="icon">✗</span> Tags aren't barcoded; pricing is done by hand by Jordan, Dad &amp; cousin</li>
+            <li><span class="icon">✗</span> Salespeople tied to terminals — can't check stock from the floor</li>
+            <li><span class="icon">✗</span> Inventory lives in books + computer; full count done by hand once a year</li>
+            <li><span class="icon">✗</span> Website shows 300+ dresser pages — no live in-stock visibility, no filtering</li>
+            <li><span class="icon">✗</span> Profit Systems can't talk to the website — no inventory sync, no cart, no checkout</li>
+          </ul>
+        </div>
+        <div class="compare-card shopify">
+          <div class="card-head">
+            <span class="badge">With Shopify</span>
+            <h3>One backend, modern tools</h3>
+          </div>
+          <ul class="card-body">
+            <li><span class="icon">✓</span> POS Pro at $67/mo (with incentive) — one location, unlimited registers &amp; staff</li>
+            <li><span class="icon">✓</span> Sales rung up at the POS once — no handwritten tickets, no re-entry</li>
+            <li><span class="icon">✓</span> SKU-based pricing with barcodes; price overrides still allowed when needed</li>
+            <li><span class="icon">✓</span> Sales team carries an iPad on the floor — full stock check + sale at the customer's side</li>
+            <li><span class="icon">✓</span> Live inventory tracked across attic, showroom &amp; website — no annual scramble</li>
+            <li><span class="icon">✓</span> Curated website showing what you actually have, with live in-stock filtering</li>
+            <li><span class="icon">✓</span> POS and website share one inventory — what's in store reflects online in real time</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- APPROACH: PHASED -->
+  <div class="section section-alt" id="approach">
+    <div class="section-inner">
+      <div class="section-num">02 — Approach</div>
+      <h2>POS first.<br/>Website second.</h2>
+      <p class="section-lead">On our call, Jordan said: <em>"If we don't have the systems in place, the website really wouldn't be quite as effective."</em> Agreed. Without clean inventory and a real POS, the website would inherit the same gaps you already see. Here's the phased plan.</p>
+
+      <div class="phase-grid">
+        <div class="phase-card priority">
+          <div class="phase-tag">✓ Phase 1 — Priority</div>
+          <h3>Replace Profit Systems with Shopify POS</h3>
+          <div class="timing">Target: First of the year (early 2027)</div>
+          <p>Get the operational backbone right. New POS, barcoded tags, iPads on the sales floor, live inventory, and integrations with QuickBooks, Synchrony, Acima, Snap Finance &amp; Podium.</p>
+          <ul>
+            <li>POS Pro live at $67/mo (vs. $1,200/mo Profit Systems)</li>
+            <li>Free migration partner handles products, images, inventory, customers, gift cards, loyalty</li>
+            <li>Staff trained alongside Profit Systems — no downtime</li>
+            <li>iPad mobility for sales floor immediately</li>
+            <li>Customer data and order history captured from day one</li>
+          </ul>
+        </div>
+
+        <div class="phase-card">
+          <div class="phase-tag">Phase 2 — Next</div>
+          <h3>Launch a curated Shopify storefront</h3>
+          <div class="timing">Target: 60–90 days after POS go-live</div>
+          <p>With clean inventory data flowing, the website becomes a real tool. Show only what you carry, with live stock visibility, financing at checkout, and the Podium chat you already love.</p>
+          <ul>
+            <li>The "Goldilocks" middle ground Denise described — curated, not 300 pages of dressers</li>
+            <li>Live stock visibility &amp; in-store availability filter</li>
+            <li>Synchrony / Acima / Snap Finance at checkout</li>
+            <li>Warranty + delivery options at checkout</li>
+            <li>Podium chat + review automation integrated</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="gen-callout">
+        <h3>On the generational change</h3>
+        <p>Denise put it well on our call — <strong>change is hard in a 66-year family business.</strong> We won't ask Dad or the cousin to learn five new systems at once. Phase 1 keeps the workflows familiar — same sales process, same pricing flexibility — just on better tools. Phase 2 only kicks off once everyone is comfortable. The goal is modernization without dislocation.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- WORKFLOW -->
+  <div class="section" id="workflow">
+    <div class="section-inner">
+      <div class="section-num">03 — Workflow</div>
+      <h2>The day-to-day,<br/>handwritten ticket to fulfillment</h2>
+      <p class="section-lead">Here's what a sale looks like on Shopify POS — without losing the salesperson-customer relationship you've built the business on.</p>
+
+      <div class="workflow-list">
+        <div class="workflow-step">
+          <div class="step-badge">01</div>
+          <div>
+            <h4>Customer walks in. Salesperson grabs an iPad.</h4>
+            <p>No more "let me go check the back" or running to the terminal. The salesperson stays with the customer, with full inventory visibility in their hand — including what's in the showroom, the warehouse, and what's available to order from Basset, Ashley, etc.</p>
+            <span class="tool-tag">✦ Shopify POS on iPad — included in POS Pro</span>
+          </div>
+        </div>
+        <div class="workflow-step">
+          <div class="step-badge">02</div>
+          <div>
+            <h4>Customer picks the couch. Price flexes when needed.</h4>
+            <p>Salesperson scans the barcode or selects the SKU. The list price shows, but staff with permission can apply a price override — preserving the family business pricing flexibility your team values. All logged for reporting.</p>
+            <span class="tool-tag">✦ Native price overrides with staff permissions</span>
+          </div>
+        </div>
+        <div class="workflow-step">
+          <div class="step-badge">03</div>
+          <div>
+            <h4>Add financing, warranty, and delivery — at the iPad.</h4>
+            <p>Customer wants Synchrony? Apply at the POS, get approved on-screen. Want the extended warranty? Toggle it on. Delivery scheduled? Capture address, pick window, done — all in one transaction.</p>
+            <span class="tool-tag">✦ Synchrony / Acima / Snap Finance app integrations</span>
+          </div>
+        </div>
+        <div class="workflow-step">
+          <div class="step-badge">04</div>
+          <div>
+            <h4>Sale closes. No handwritten ticket.</h4>
+            <p>Transaction processes once. Inventory updates live across POS and the eventual website. Customer profile saved for future visits, marketing, and review request via Podium. Sam doesn't re-enter anything.</p>
+            <span class="tool-tag">✦ One entry — no double work for Sam</span>
+          </div>
+        </div>
+        <div class="workflow-step">
+          <div class="step-badge">05</div>
+          <div>
+            <h4>Podium sends a review request. QuickBooks gets the data.</h4>
+            <p>Behind the scenes, Podium fires off a review invite (you keep your existing positive review flywheel). QuickBooks Online syncs the sale into your books automatically. No new workflows for your team — just the old ones, done better.</p>
+            <span class="tool-tag">✦ Podium + QuickBooks Online — both integrate with Shopify</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- INTEGRATIONS -->
+  <div class="section section-dark">
+    <div class="section-inner">
+      <div class="section-num">04 — Integrations</div>
+      <h2>The tools you already use,<br/>plugged into one platform</h2>
+      <p class="section-lead">Every system you mentioned on our call connects with Shopify. No rip-and-replace beyond Profit Systems itself.</p>
+
+      <div class="integration-grid">
+        <div class="integration-card">
+          <div class="check">✓</div>
+          <h5>Podium</h5>
+          <p>Chat, text-from-landline, review automation</p>
+        </div>
+        <div class="integration-card">
+          <div class="check">✓</div>
+          <h5>QuickBooks Online</h5>
+          <p>Native connector — automated sync</p>
+        </div>
+        <div class="integration-card">
+          <div class="check">✓</div>
+          <h5>Synchrony</h5>
+          <p>Consumer financing at POS &amp; checkout</p>
+        </div>
+        <div class="integration-card">
+          <div class="check">✓</div>
+          <h5>Acima &amp; Snap Finance</h5>
+          <p>Lease-to-own options available</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FEATURES -->
+  <div class="section" id="features">
+    <div class="section-inner">
+      <div class="section-num">05 — Features</div>
+      <h2>Every concern from our call,<br/>addressed</h2>
+      <p class="section-lead">A quick reference for the specific things you raised — across operations, sales floor, customer experience, and the website plan.</p>
+
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="feature-tag">Sales Floor</div>
+          <h4>iPad mobility for salespeople</h4>
+          <p>Shopify POS runs on iPad — included in POS Pro. Sales staff stay with the customer, look up stock, ring up sales, capture deposits, and email receipts without leaving the customer's side.</p>
+          <span class="app-pill">✓ Native</span>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-tag">Inventory</div>
+          <h4>Live stock across showroom, attic &amp; web</h4>
+          <p>Dedicate inventory to specific locations (showroom floor, attic warehouse, online-only). The POS shows live counts; the website shows real availability. Annual hand-count becomes a continuous, automated process.</p>
+          <span class="app-pill">✓ Native multi-location</span>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-tag">Tags &amp; Pricing</div>
+          <h4>Barcoded tags + flexible pricing</h4>
+          <p>Print barcode tags directly from Shopify. Sales scan instead of handwriting tickets. Staff with permission can still apply price overrides for negotiated deals — the way Dad and the cousin always have — but it's now logged.</p>
+          <span class="app-pill">✓ Native barcode + permissions</span>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-tag">Website</div>
+          <h4>Curated catalog with in-stock filter</h4>
+          <p>The "Goldilocks" version Denise asked for. Show what you actually have or can quickly get — not 300 pages of vendor catalog. Customers filter by "in store today" or "order from manufacturer." Each product shows real availability.</p>
+          <span class="app-pill">✓ Native — Phase 2</span>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-tag">Checkout</div>
+          <h4>Financing, warranties &amp; delivery options</h4>
+          <p>Synchrony, Acima, and Snap Finance all integrate at checkout. Warranties can be offered as add-ons. Delivery vs. pickup is selectable, with address capture and date scheduling. All native to Shopify checkout.</p>
+          <span class="app-pill">✓ Native + integrations</span>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-tag">Vendors</div>
+          <h4>Catalog sync from Basset, Ashley, etc.</h4>
+          <p>Several major furniture brands (including Basset and Ashley) have apps that push their catalogs directly into Shopify with images and SKUs. You select what you carry; the rest stays hidden. No more 300 pages of dressers.</p>
+          <span class="app-pill">✓ Vendor catalog apps</span>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-tag">Marketing</div>
+          <h4>Customer profiles unified across channels</h4>
+          <p>Every in-store sale builds a customer profile that Denise can market to: targeted email campaigns, sale alerts, abandoned-cart follow-ups (once Phase 2 is live), and SMS via Podium. One source of truth across all touchpoints.</p>
+          <span class="app-pill">✓ Native CRM + Podium</span>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-tag">Support</div>
+          <h4>Sidekick AI built into the admin</h4>
+          <p>Shopify's built-in AI assistant lets Denise (or anyone) say "add this sale ad to the homepage" or "create a new collection for the Basset summer line" and walks through it step by step. No need to wait on an account executive at your current provider.</p>
+          <span class="app-pill">✓ Native AI assistant</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRICING -->
+  <div class="section section-alt" id="pricing">
+    <div class="section-inner">
+      <div class="section-num">06 — Pricing</div>
+      <h2>The full breakdown</h2>
+      <p class="section-lead">POS Pro replaces Profit Systems at less than 6% of what you're paying today. Phase 2 adds the website at $39/mo. Everything below reflects the active incentives in your deal.</p>
+
+      <div class="savings-callout">
+        <div>
+          <h3>You're paying $1,200/month for Profit Systems</h3>
+          <p>Shopify POS Pro is $89/mo standard. With your 25%-off-for-1-year incentive, that drops to $67/mo. Same one location, unlimited registers and staff. The math is straightforward.</p>
+        </div>
+        <div style="text-align: right;">
+          <div class="big-num">~$13.5k</div>
+          <div class="sub-num">estimated annual POS savings</div>
+        </div>
+      </div>
+
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <div class="pricing-head">
+            <h3>Phase 1 — POS</h3>
+            <span class="amount">$67/mo</span>
+          </div>
+          <div class="pricing-items">
+            <div class="pricing-item">
+              <div>
+                <div class="pricing-item-label">Shopify POS Pro</div>
+                <div class="pricing-item-sub">$89/mo standard — 25% off for 1 year = $67. One location, unlimited registers.</div>
+              </div>
+              <div class="pricing-item-price">$67/mo</div>
+            </div>
+            <div class="pricing-item">
+              <div>
+                <div class="pricing-item-label">Hardware (one-time)</div>
+                <div class="pricing-item-sub">Free POS Terminal OR $349 hardware credit toward iPad bundles, card readers, etc.</div>
+              </div>
+              <div class="pricing-item-price">Included</div>
+            </div>
+            <div class="pricing-item">
+              <div>
+                <div class="pricing-item-label">Migration partner</div>
+                <div class="pricing-item-sub">Free — products, images, inventory, customers, gift cards, loyalty</div>
+              </div>
+              <div class="pricing-item-price">Free</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pricing-card">
+          <div class="pricing-head">
+            <h3>Phase 2 — Website</h3>
+            <span class="amount">+$39/mo</span>
+          </div>
+          <div class="pricing-items">
+            <div class="pricing-item">
+              <div>
+                <div class="pricing-item-label">Shopify Basic plan</div>
+                <div class="pricing-item-sub">Online store, admin, themes. Discount available for annual payment.</div>
+              </div>
+              <div class="pricing-item-price">$39/mo</div>
+            </div>
+            <div class="pricing-item">
+              <div>
+                <div class="pricing-item-label">Vendor catalog apps</div>
+                <div class="pricing-item-sub">Basset, Ashley, etc. — varies, many free or low-cost</div>
+              </div>
+              <div class="pricing-item-price">$0–$50/mo</div>
+            </div>
+            <div class="pricing-item">
+              <div>
+                <div class="pricing-item-label">Custom theme / partner build</div>
+                <div class="pricing-item-sub">Optional. Shopify partners typically $3k–$8k one-time for furniture sites.</div>
+              </div>
+              <div class="pricing-item-price">Optional</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h3 style="margin-top: 40px; margin-bottom: 16px; font-size: 1.1rem;">Incentives included in your deal</h3>
+      <div class="incentive-grid">
+        <div class="incentive-card">
+          <div class="icon">25</div>
+          <div>
+            <h5>25% off POS Pro for 1 year</h5>
+            <p>$67/mo instead of $89/mo, locked in</p>
+          </div>
+        </div>
+        <div class="incentive-card">
+          <div class="icon">$</div>
+          <div>
+            <h5>Free POS Terminal or $349 hardware credit</h5>
+            <p>Use toward any bundle with a payment device</p>
+          </div>
+        </div>
+        <div class="incentive-card">
+          <div class="icon">→</div>
+          <div>
+            <h5>Free migration via Shopify partner</h5>
+            <p>The heavy lift — handled for you</p>
+          </div>
+        </div>
+        <div class="incentive-card">
+          <div class="icon">$</div>
+          <div>
+            <h5>$200 rebate at $10k retail payments</h5>
+            <p>Applied to POS subscription, first 90 days</p>
+          </div>
+        </div>
+        <div class="incentive-card">
+          <div class="icon">1%</div>
+          <div>
+            <h5>1% back on all Shopify plans</h5>
+            <p>Applied toward your plan subscriptions</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-section" id="next-steps">
+    <h2>Ready to write the <em>next chapter?</em></h2>
+    <p>This site is the conversation starter — not the proposal. The next step is a 30-minute working session to walk through current workflows, must-haves vs. wish-list items, and lock in the Phase 1 plan so you're on track for a first-of-the-year POS go-live.</p>
+    <a href="https://calendar.google.com/appointments/schedules/AcZssZ1bXcK-0u6vQGmdjMfPCxZTgewL6R5o5ekaEd7dMDCkoeWLUEGk4pVjp_bgDMqmniX-sEzDIqt_" class="btn-dark">Schedule a Working Session →</a>
+  </div>
+
+  <footer>
+    <div>Gilliam Thompson Furniture × Shopify — Growth Proposal</div>
+    <div>Prepared for Jordan, Denise &amp; Sam · Shopify Sales · This page is not an offer. Pricing illustrative; final commercial terms set in writing. · May 2026</div>
+  </footer>
+
+</div>
+
+<script>
+  const PASSWORD = 'gilliam2026';
+
+  function checkPw() {
+    const val = document.getElementById('pw-input').value.trim();
+    const err = document.getElementById('pw-error');
+    if (val === PASSWORD) {
+      document.getElementById('gate').style.display = 'none';
+      document.getElementById('content').style.display = 'block';
+    } else {
+      err.textContent = 'Incorrect access code — please try again.';
+      document.getElementById('pw-input').value = '';
+      document.getElementById('pw-input').focus();
+    }
+  }
+
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+</script>
+
+</body>
+</html>

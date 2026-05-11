@@ -6,22 +6,24 @@
   <title>Gilliam Thompson Furniture — Shopify Proposal</title>
   <style>
     :root {
-      --navy: #0f1623;
-      --navy-2: #161e2e;
-      --navy-3: #1d2840;
-      --teal: #00c2a8;
-      --teal-dark: #00a38d;
+      --navy: #27272a;         /* charcoal — primary dark */
+      --navy-2: #3f3f46;       /* charcoal lighter */
+      --navy-3: #52525b;       /* charcoal lighter still */
+      --teal: #d36d2f;         /* warm rust — primary accent */
+      --teal-dark: #ab5724;    /* darker rust */
+      --cream: #fec36b;        /* warm cream for highlights */
+      --stone: #d1cdc7;        /* warm stone neutral */
       --white: #ffffff;
-      --gray-100: #f4f6f8;
-      --gray-200: #e8ecf0;
-      --gray-400: #8a96a8;
-      --gray-600: #4a5568;
-      --border: #2a3650;
-      --border-light: #e2e8f0;
+      --gray-100: #faf8f5;     /* warm off-white */
+      --gray-200: #ececea;     /* warm light gray */
+      --gray-400: #8a8580;     /* warm mid gray */
+      --gray-600: #4a4742;     /* warm dark gray */
+      --border: #4a4742;
+      --border-light: #e4dfd8;
       --red: #e53e3e;
       --amber: #d69e2e;
       --green: #2f855a;
-      --text-dark: #1a202c;
+      --text-dark: #27272a;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -331,7 +333,7 @@
     }
 
     .compare-card.current .card-head { background: #fff5f5; border-bottom: 1px solid #fed7d7; }
-    .compare-card.shopify .card-head { background: #f0fdf9; border-bottom: 1px solid #b2f5ea; }
+    .compare-card.shopify .card-head { background: #fdf4e7; border-bottom: 1px solid #f5d9b5; }
 
     .card-head {
       padding: 18px 24px;
@@ -348,7 +350,7 @@
     }
 
     .compare-card.current .badge { background: #fed7d7; color: #c53030; }
-    .compare-card.shopify .badge { background: #b2f5ea; color: #00695c; }
+    .compare-card.shopify .badge { background: #f5d9b5; color: #8b4513; }
 
     .card-head h3 { font-size: 1rem; font-weight: 700; }
 
@@ -494,9 +496,9 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      background: #f0fdf9;
-      border: 1px solid #b2f5ea;
-      color: #00695c;
+      background: #fdf4e7;
+      border: 1px solid #f5d9b5;
+      color: #8b4513;
       font-size: 0.75rem;
       font-weight: 600;
       padding: 3px 10px;
@@ -542,9 +544,9 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      background: #f0fdf9;
-      border: 1px solid #b2f5ea;
-      color: #00695c;
+      background: #fdf4e7;
+      border: 1px solid #f5d9b5;
+      color: #8b4513;
       font-size: 0.78rem;
       font-weight: 600;
       padding: 4px 10px;
@@ -587,7 +589,7 @@
 
     /* ── PRICING ── */
     .savings-callout {
-      background: linear-gradient(135deg, #00c2a8 0%, #00a38d 100%);
+      background: linear-gradient(135deg, #d36d2f 0%, #ab5724 100%);
       border-radius: 12px;
       padding: 40px 40px;
       display: flex;
@@ -598,10 +600,10 @@
       margin-bottom: 32px;
     }
 
-    .savings-callout h3 { color: var(--navy); font-size: 1.25rem; font-weight: 800; }
-    .savings-callout p { color: rgba(15,22,35,0.75); font-size: 0.92rem; margin-top: 6px; max-width: 520px; line-height: 1.6; }
-    .savings-callout .big-num { color: var(--navy); font-size: 3rem; font-weight: 900; letter-spacing: -0.02em; line-height: 1; }
-    .savings-callout .sub-num { color: rgba(15,22,35,0.7); font-size: 0.85rem; margin-top: 6px; text-align: right; }
+    .savings-callout h3 { color: #fff; font-size: 1.25rem; font-weight: 800; }
+    .savings-callout p { color: rgba(255,255,255,0.88); font-size: 0.92rem; margin-top: 6px; max-width: 520px; line-height: 1.6; }
+    .savings-callout .big-num { color: #fff; font-size: 3rem; font-weight: 900; letter-spacing: -0.02em; line-height: 1; }
+    .savings-callout .sub-num { color: rgba(255,255,255,0.8); font-size: 0.85rem; margin-top: 6px; text-align: right; }
 
     .pricing-grid {
       display: grid;
@@ -709,9 +711,9 @@
       text-align: center;
     }
 
-    .cta-section h2 { color: var(--navy); font-size: 2rem; margin-bottom: 12px; }
+    .cta-section h2 { color: #fff; font-size: 2rem; margin-bottom: 12px; }
     .cta-section h2 em { font-style: italic; }
-    .cta-section p { color: rgba(15,22,35,0.7); margin-bottom: 36px; font-size: 1rem; max-width: 600px; margin-left: auto; margin-right: auto; }
+    .cta-section p { color: rgba(255,255,255,0.88); margin-bottom: 36px; font-size: 1rem; max-width: 600px; margin-left: auto; margin-right: auto; }
 
     .btn-dark {
       background: var(--navy);

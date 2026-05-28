@@ -739,6 +739,107 @@
       color: var(--gray-400);
     }
 
+    /* ── REQUIREMENTS ── */
+    .req-categories { display: flex; flex-direction: column; gap: 14px; }
+
+    .req-cat {
+      background: var(--white);
+      border: 1px solid var(--border-light);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .req-cat summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 22px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      transition: background 0.15s;
+    }
+
+    .req-cat summary::-webkit-details-marker { display: none; }
+    .req-cat summary:hover { background: var(--gray-100); }
+
+    .req-cat-label {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex: 1;
+    }
+
+    .req-cat-tag {
+      background: var(--teal);
+      color: var(--navy);
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 100px;
+      flex-shrink: 0;
+    }
+
+    .req-cat summary h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin: 0;
+      line-height: 1.4;
+    }
+
+    .req-cat-toggle {
+      color: var(--gray-400);
+      font-size: 1.4rem;
+      font-weight: 300;
+      transition: transform 0.2s;
+      flex-shrink: 0;
+    }
+
+    .req-cat[open] .req-cat-toggle { transform: rotate(45deg); }
+
+    .req-cat-body {
+      border-top: 1px solid var(--border-light);
+      padding: 4px 0;
+    }
+
+    .req-row {
+      display: grid;
+      grid-template-columns: 0.85fr 1.4fr;
+      gap: 28px;
+      padding: 16px 28px;
+      border-bottom: 1px solid var(--gray-200);
+      font-size: 0.9rem;
+      line-height: 1.55;
+    }
+
+    .req-row:last-child { border-bottom: none; }
+
+    .req-need {
+      color: var(--gray-600);
+      font-weight: 600;
+    }
+
+    .req-answer { color: var(--text-dark); }
+
+    .req-status {
+      display: inline-flex;
+      align-items: center;
+      font-size: 0.65rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 100px;
+      margin-right: 8px;
+      vertical-align: middle;
+    }
+
+    .req-status.native { background: #d6f5e3; color: #1f6b46; }
+    .req-status.app { background: #fdf4e7; color: #8b4513; }
+    .req-status.partner { background: #e6e6fa; color: #4c4a7d; }
+
     @media (max-width: 760px) {
       .nav-links { display: none; }
       .section, .hero, .cta-section { padding-left: 24px; padding-right: 24px; }
@@ -748,6 +849,8 @@
       .hero-stats { grid-template-columns: 1fr; }
       footer { flex-direction: column; gap: 8px; }
       .savings-callout { flex-direction: column; text-align: center; }
+      .req-row { grid-template-columns: 1fr; gap: 6px; padding: 14px 20px; }
+      .req-cat summary { padding: 18px 20px; }
     }
   </style>
 </head>
@@ -784,6 +887,7 @@
         <li><a href="#approach">Approach</a></li>
         <li><a href="#workflow">Workflow</a></li>
         <li><a href="#features">Features</a></li>
+        <li><a href="#requirements">Worksheet</a></li>
         <li><a href="#next-steps" class="nav-cta">Book a Call →</a></li>
       </ul>
     </div>
@@ -1171,6 +1275,339 @@
           <p>Shopify's built-in AI assistant lets Denise (or anyone) say "add this sale ad to the homepage" or "create a new collection for the Basset summer line" and walks through it step by step. No need to wait on an account executive at your current provider.</p>
           <span class="app-pill">✓ Native AI assistant</span>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- REQUIREMENTS WORKSHEET -->
+  <div class="section section-alt" id="requirements">
+    <div class="section-inner">
+      <div class="section-num">07 — Your Worksheet, Mapped</div>
+      <h2>Every requirement,<br/>solutioned on Shopify</h2>
+      <p class="section-lead">Pulled straight from the worksheet you sent over. Every "Yes" and "Maybe" answered. <span class="req-status native">Native</span> = built into POS Pro.&nbsp; <span class="req-status app">App</span> = small add-on, typically under $30/mo.&nbsp; <span class="req-status partner">Partner</span> = handled by your migration partner.</p>
+
+      <div class="req-categories">
+
+        <details class="req-cat" open>
+          <summary>
+            <div class="req-cat-label">
+              <span class="req-cat-tag">Payments</span>
+              <h3>Cards, contactless, gift cards, deposits, layaway, reconciliation</h3>
+            </div>
+            <span class="req-cat-toggle">+</span>
+          </summary>
+          <div class="req-cat-body">
+            <div class="req-row">
+              <div class="req-need">Credit, debit, cash, checks</div>
+              <div class="req-answer"><span class="req-status native">Native</span>POS Terminal accepts every tender out of the box. Check tender is a configurable payment type.</div>
+            </div>
+            <div class="req-row">
+              <div class="req-need">Apple Pay / Google Pay (gap today)</div>
+              <div class="req-answer"><span class="req-status native">Native</span>Contactless turns on the day your reader ships. No setup, no extra fees beyond standard card processing.</div>
+            </div>
+            <div class="req-row">
+              <div class="req-need">Integrated payment processing (separate terminal today)</div>
+              <div class="req-answer"><span class="req-status native">Native</span>Shopify Payments is fully integrated. One tap charges the card, one record posts to the POS. No more manual posting from a separate terminal.</div>
+            </div>
+            <div class="req-row">
+              <div class="req-need">Gift cards &amp; store credit</div>
+              <div class="req-answer"><span class="req-status native">Native</span>Digital gift cards replace your paper certificates. Store credit attaches to the customer profile and applies at checkout, same workflow you have now.</div>
+            </div>
+            <div class="req-row">
+              <div class="req-need">Split tender + deposits / down payments</div>
+              <div class="req-answer"><span class="req-status native">Native</span>Split across cash, card, gift card, and store credit on one sale. Deposits captured via draft orders at any percentage; balance owed travels with the order until pickup or delivery.</div>
+            </div>
+            <div class="req-row">
+              <div class="req-need">Layaway</div>
+              <div class="req-answer"><span class="req-status app">App</span>Layaway Manager or Lay-Buys installs on top of POS, tracks the payment schedule, and holds inventory. Around $10 to $30 per month.</div>
+            </div>
+            <div class="req-row">
+              <div class="req-need">Refunds (cash, check, credit card)</div>
+              <div class="req-answer"><span class="req-status native">Native</span>Refund to the original tender or split however you want. Cash, card, or check, your call at the moment of refund.</div>
+            </div>
+            <div class="req-row">
+              <div class="req-need">End-of-day cash reconciliation</div>
+              <div class="req-answer"><span class="req-status native">Native</span>Opening float, expected close, variance reporting per shift. Same nightly count, the math is automated.</div>
+            </div>
+          </div>
+        </details>
+
+        <details class="req-cat">
+          <summary>
+            <div class="req-cat-label">
+              <span class="req-cat-tag">Inventory</span>
+              <h3>3,500-4,000 SKUs, 3 locations, barcoded tags, PO receiving</h3>
+            </div>
+            <span class="req-cat-toggle">+</span>
+          </summary>
+          <div class="req-cat-body">
+            <div class="req-row">
+              <div class="req-need">3,500-4,000 active SKUs with variants</div>
+              <div class="req-answer"><span class="req-status native">Native</span>POS Pro supports unlimited products and variants (size, color, fabric, finish). Easy.</div>
+            </div>
+            <div class="req-row">
+              <div class="req-need">Barcode scanning + label printing (gap today)</div>
+              <div class="req-answer"><span class="req-status native">Native</span>Retail Barcode Labels (free Shopify app) prints to Dymo or Zebra label printers. Scanners are USB or Bluetooth, plug-and-play with iPads.</div>
+            </div>
+            <div class="req-row">
+              <div class="req-need">3 locations: showroom + 2 warehouses</div>
+              <div class="req-answer"><span class="req-status native">Native</span>Multi-location inventory included in POS Pro. Stock levels tracked per location, viewable from any iPad on the floor.</div>
+            </div>
+            <div class="req-row">
+              <div class="req-need">Transfer stock between locations</div>
+              <div class="req-answer"><span class="req-status native">Native</span>Initiate transfers at the POS or admin. Track in-transit vs received; counts adjust automatically on receipt.</div>
+            </div>
+            <div class="req-row">
+              <div class="req-need">Receive purchase orders at POS</div>
+              <div class="req-answer"><span class="req-status native">Native</span>Stocky (free with POS Pro) handles PO creation, receiving, and partial receipts directly at the POS.</div>
+            </div>
+            <div class="req-row">
+              <div class="req-need">Annual physical inventory + cycle counts</div>
+              <div class="req-answer"><span class="req-status native">Native</span>Stocky stocktakes turn your annual count into either a one-day push or rolling cycle counts. Scan to count, no spreadsheets.</div>
+            </div>
+            <div class="req-row">
+              <div class="req-need">Low stock alerts + vendor management</div>
+              <div class="req-answer"><span class="req-status native">Native</span>Stocky tracks reorder points per SKU per location, generates POs automatically, and stores vendor contacts and costs.</div>
+            </div>
+            <div class="req-row">
+              <div class="req-need">Product bundles / kits</div>
+              <div class="req-answer"><span class="req-status native">Native</span>Shopify Bundles (free) lets you sell a sectional + ottoman + side table as one SKU while components stay tracked individually.</div>
+            </div>
+          </div>
+        </details>
+
+        <details class="req-cat">
+          <summary>
+            <div class="req-cat-label">
+              <span class="req-cat-tag">Customer &amp; Loyalty</span>
+              <h3>Profiles, purchase history, receipts, discounts</h3>
+            </div>
+            <span class="req-cat-toggle">+</span>
+          </summary>
+          <div class="req-cat-body">
+            <div class="req-row">
+              <div class="req-need">Customer profiles + full purchase history at POS</div>
+              <div class="req-answer"><span class="req-status native">Native</span>Every sale builds a customer record. Salespeople pull up any customer on the iPad to see prior orders, deposits, store credit, and notes.</div>
+            </div>
+            <div class="req-row">
+              <div class="req-need">Printed receipts</div>
+              <div class="req-answer"><span class="req-status native">Native</span>Star or Epson Bluetooth receipt printers, compatible with the iPads you already have.</div>
+            </div>
+            <div class="req-row">
+              <div class="req-need">Email / SMS receipts</div>
+              <div class="req-answer"><span class="req-status native">Native</span>Optional at checkout. Customer chooses print, email, SMS (routed through Podium), or no receipt.</div>
+            </div>
+            <div class="req-row">
+              <div class="req-need">Staff-applied manual discounts</div>
+              <div class="req-answer"><span class="req-status native">Native</span>Permission-gated. Sales staff can apply small discounts; managers approve bigger ones. Every override logged.</div>
+            </div>
+            <div class="req-row">
+              <div class="req-need">Customer-facing display</div>
+              <div class="req-answer"><span class="req-status native">Native</span>Shopify POS Terminal has a built-in customer-facing screen. Optional second display for iPad stations.</div>
+            </div>
+            <div class="req-row">
+              <div class="req-need">Loyalty program (Maybe, Low priority)</div>
+              <div class="req-answer"><span class="req-status app">App</span>Optional. Smile.io or Yotpo handle points and rewards when you're ready. Recommend parking until Phase 1 stabilizes.</div>
+            </div>
+          </div>
+        </details>
+
+        <details class="req-cat">
+          <summary>
+            <div class="req-cat-label">
+              <span class="req-cat-tag">Staff &amp; Ops</span>
+              <h3>7-10 staff, 3 registers, iPad mobility, permissions, commissions</h3>
+            </div>
+            <span class="req-cat-toggle">+</span>
+          </summary>
+          <div class="req-cat-body">
+            <div class="req-row">
+              <div class="req-need">7-10 staff using POS</div>
+              <div class="req-answer"><span class="req-status native">Native</span>POS Pro = unlimited POS staff. No per-seat fee. Each gets their own PIN.</div>
+            </div>
+            <div class="req-row">
+              <div class="req-need">3 registers</div>
+              <div class="req-answer"><span class="req-status native">Native</span>Unlimited registers on POS Pro. Run as many iPads or POS Terminals at once as you want.</div>
+            </div>
+            <div class="req-row">
+              <div class="req-need">Role-based staff permissions</div>
+              <div class="req-answer"><span class="req-status native">Native</span>POS Pro specific. Cashier, Associate, Manager, Owner roles out of the box; fully customizable. Limits on discounting, refunds, voids, and reporting access.</div>
+            </div>
+            <div class="req-row">
+              <div class="req-need">Commission tracking (monthly overall today)</div>
+              <div class="req-answer"><span class="req-status native">Native</span>POS Pro attributes every sale to a staff member. View commissions by sale, day, or month. Apps available if you want tiered structures later.</div>
+            </div>
+            <div class="req-row">
+              <div class="req-need">Mobile POS on iPad (5-6 in use)</div>
+              <div class="req-answer"><span class="req-status native">Native</span>Your existing iPads work. POS app is a free download. Sales staff carry one each, ring up sales next to the customer.</div>
+            </div>
+            <div class="req-row">
+              <div class="req-need">Fixed countertop registers</div>
+              <div class="req-answer"><span class="req-status native">Native</span>iPad stands + Shopify POS Terminal cover the front counter setup. Same form factor, no learning curve.</div>
+            </div>
+            <div class="req-row">
+              <div class="req-need">Offline mode (gap today)</div>
+              <div class="req-answer"><span class="req-status native">Native</span>POS Pro offline mode keeps card payments and cash sales running if internet drops. Syncs back when you're online.</div>
+            </div>
+            <div class="req-row">
+              <div class="req-need">Staff clock-in / clock-out (manual today)</div>
+              <div class="req-answer"><span class="req-status native">Native</span>POS Pro has staff time tracking built in. Clock in, clock out, exportable timesheet for your bookkeeper.</div>
+            </div>
+          </div>
+        </details>
+
+        <details class="req-cat">
+          <summary>
+            <div class="req-cat-label">
+              <span class="req-cat-tag">Reporting</span>
+              <h3>Daily sales, by product / staff / category, remote dashboard</h3>
+            </div>
+            <span class="req-cat-toggle">+</span>
+          </summary>
+          <div class="req-cat-body">
+            <div class="req-row">
+              <div class="req-need">Daily sales summary</div>
+              <div class="req-answer"><span class="req-status native">Native</span>Live dashboard. Today's sales, count, average ticket, top sellers, top staff, all at a glance.</div>
+            </div>
+            <div class="req-row">
+              <div class="req-need">Sales by product, category, variant</div>
+              <div class="req-answer"><span class="req-status native">Native</span>Drill into Bassett vs Ashley vs others. By collection, by variant, by date range. Every report exportable.</div>
+            </div>
+            <div class="req-row">
+              <div class="req-need">Sales by staff</div>
+              <div class="req-answer"><span class="req-status native">Native</span>Already attributed at the sale; rolled up by day, week, month. Cleaner data than your current monthly roll-up.</div>
+            </div>
+            <div class="req-row">
+              <div class="req-need">Inventory valuation</div>
+              <div class="req-answer"><span class="req-status native">Native</span>By location and total. Track at cost, retail, or both. Run monthly for the bookkeeper.</div>
+            </div>
+            <div class="req-row">
+              <div class="req-need">Tax reports (manual today)</div>
+              <div class="req-answer"><span class="req-status native">Native</span>Shopify Tax auto-calculates and reports by jurisdiction. Saves manual sales-tax prep every filing period.</div>
+            </div>
+            <div class="req-row">
+              <div class="req-need">Custom date ranges + CSV export</div>
+              <div class="req-answer"><span class="req-status native">Native</span>Any date range, any report, exportable to CSV or Excel.</div>
+            </div>
+            <div class="req-row">
+              <div class="req-need">Real-time dashboard, remote</div>
+              <div class="req-answer"><span class="req-status native">Native</span>Shopify mobile app shows the same dashboard on your phone. Check the store from anywhere, see today's number while you're at the warehouse.</div>
+            </div>
+          </div>
+        </details>
+
+        <details class="req-cat">
+          <summary>
+            <div class="req-cat-label">
+              <span class="req-cat-tag">Integrations</span>
+              <h3>QuickBooks, Podium, financing, unified online + in-store inventory</h3>
+            </div>
+            <span class="req-cat-toggle">+</span>
+          </summary>
+          <div class="req-cat-body">
+            <div class="req-row">
+              <div class="req-need">Replace Profit Systems RetailVantage</div>
+              <div class="req-answer"><span class="req-status partner">Partner</span>Free migration partner moves products, images, inventory, customers, gift cards, and store credit. Heavy lift handled.</div>
+            </div>
+            <div class="req-row">
+              <div class="req-need">Unified online + in-store inventory (manual today)</div>
+              <div class="req-answer"><span class="req-status native">Native</span>This is the big win. One product catalog, one inventory count, one source of truth. Sell on the floor, the website updates. Sell online, the store sees the count.</div>
+            </div>
+            <div class="req-row">
+              <div class="req-need">QuickBooks Online (bookkeeper re-keys today)</div>
+              <div class="req-answer"><span class="req-status native">Native</span>Native QuickBooks connector pushes daily sales journals, taxes, refunds, and tips into QBO automatically. Your bookkeeper still owns the books; she stops doing data entry.</div>
+            </div>
+            <div class="req-row">
+              <div class="req-need">Podium (chat, reviews, SMS)</div>
+              <div class="req-answer"><span class="req-status app">App</span>Podium has a Shopify integration. Existing review automation keeps firing; SMS receipts route through Podium. No change to your customer flow.</div>
+            </div>
+            <div class="req-row">
+              <div class="req-need">Synchrony / Acima / Snap Finance</div>
+              <div class="req-answer"><span class="req-status app">App</span>All three have Shopify apps. Apply at the POS, instant approval on-screen, financed amount becomes a tender on the order.</div>
+            </div>
+            <div class="req-row">
+              <div class="req-need">Ship from store (your own trucks)</div>
+              <div class="req-answer"><span class="req-status native">Native</span>Local delivery + scheduled delivery windows native to Shopify. Capture address and pickup window at the POS. Route from your warehouse, your trucks, your staff.</div>
+            </div>
+            <div class="req-row">
+              <div class="req-need">BOPIS &amp; in-store returns of online orders (Phase 2)</div>
+              <div class="req-answer"><span class="req-status native">Native</span>Comes online with Phase 2. Online order picked up at the showroom or returned in person, all handled at the POS.</div>
+            </div>
+          </div>
+        </details>
+
+        <details class="req-cat">
+          <summary>
+            <div class="req-cat-label">
+              <span class="req-cat-tag">Hardware</span>
+              <h3>Card readers, scanners, label printers, receipt printers</h3>
+            </div>
+            <span class="req-cat-toggle">+</span>
+          </summary>
+          <div class="req-cat-body">
+            <div class="req-row">
+              <div class="req-need">Countertop card reader</div>
+              <div class="req-answer"><span class="req-status native">Native</span>Shopify POS Terminal (free with your incentive). Built-in customer display, contactless, chip + tap, fully integrated to the POS.</div>
+            </div>
+            <div class="req-row">
+              <div class="req-need">Existing iPads (5-6), keep them</div>
+              <div class="req-answer"><span class="req-status native">Native</span>Shopify POS runs on iPad. Free app, your existing hardware. Tap &amp; Chip readers (~$49) pair to each iPad for mobile checkout.</div>
+            </div>
+            <div class="req-row">
+              <div class="req-need">Cash drawer (antique drawer today)</div>
+              <div class="req-answer"><span class="req-status native">Native</span>APG or MMF drawers connect via the receipt printer. If your existing drawer has the right cable, keep it; if not, around $120.</div>
+            </div>
+            <div class="req-row">
+              <div class="req-need">Receipt printer (handwritten today)</div>
+              <div class="req-answer"><span class="req-status native">Native</span>Star TSP143 Bluetooth receipt printers pair with iPad over Bluetooth. Around $300 each.</div>
+            </div>
+            <div class="req-row">
+              <div class="req-need">Barcode scanner (none today)</div>
+              <div class="req-answer"><span class="req-status native">Native</span>Socket Mobile S700 Bluetooth scanners pair to iPads. Around $200 each. Or USB scanners for fixed registers.</div>
+            </div>
+            <div class="req-row">
+              <div class="req-need">Label / barcode printer (none today)</div>
+              <div class="req-answer"><span class="req-status native">Native</span>Dymo LabelWriter 550 (~$130) or Zebra ZD220 (~$250). Prints from Retail Barcode Labels, free from Shopify.</div>
+            </div>
+            <div class="req-row">
+              <div class="req-need">Customer-facing display</div>
+              <div class="req-answer"><span class="req-status native">Native</span>POS Terminal has it built in. Add at the counter if and when you want a dedicated screen for the iPad stations.</div>
+            </div>
+            <div class="req-row">
+              <div class="req-need">Estimated hardware kits</div>
+              <div class="req-answer"><span class="req-status native">Native</span>Recommend 2 full kits to start: front counter (POS Terminal + drawer + receipt + label printer) and a floor kit (Tap &amp; Chip reader + Socket scanner). Free Terminal and $349 hardware credit cover most of it.</div>
+            </div>
+          </div>
+        </details>
+
+        <details class="req-cat">
+          <summary>
+            <div class="req-cat-label">
+              <span class="req-cat-tag">Quotes &amp; Tax</span>
+              <h3>Quotes at POS, custom orders, tax exemptions</h3>
+            </div>
+            <span class="req-cat-toggle">+</span>
+          </summary>
+          <div class="req-cat-body">
+            <div class="req-row">
+              <div class="req-need">Tax: mix of manual + POS today</div>
+              <div class="req-answer"><span class="req-status native">Native</span>Shopify Tax auto-calculates by jurisdiction. Tax-exempt flag attaches to the customer profile and applies automatically on every sale.</div>
+            </div>
+            <div class="req-row">
+              <div class="req-need">Quotes / estimates at POS</div>
+              <div class="req-answer"><span class="req-status native">Native</span>Draft orders work as quotes. Build the order, save, email to the customer, convert to a real sale when they're ready. No re-entry.</div>
+            </div>
+            <div class="req-row">
+              <div class="req-need">Custom orders / special orders (gap today)</div>
+              <div class="req-answer"><span class="req-status native">Native</span>Custom items, made-to-order pieces, or vendor special orders ring up as draft orders with deposits captured. Order travels with the customer until delivery.</div>
+            </div>
+            <div class="req-row">
+              <div class="req-need">Multi-currency, multilingual, age verification</div>
+              <div class="req-answer"><span class="req-status native">Native</span>You flagged all of these No, which is right for today. Worth noting Shopify covers them if scope ever changes. Available when you need them.</div>
+            </div>
+          </div>
+        </details>
+
       </div>
     </div>
   </div>
